@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>KeyEncryptor</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <div class="logo">
+          <img src="img/Logo.svg" alt="" />
+        </div>
+      </header>
+      <div class="encriptar">
+        <textarea
+          name="text"
+          class="text"
+          id="text"
+          cols="30"
+          rows="10"
+          placeholder="Ingresa el texto aqui"
+        ></textarea>
+      </div>
+      <div class="terminos">
+        <p>Solo letras minusculas y sin acento</p>
+      </div>
+      <div class="botones">
+        <button class="btn-encriptar" type="button" onclick="encriptar()">
+          Encriptar
+        </button>
+        <button class="btn-desencriptar" type="button" onclick="desencriptar()">
+          Desencriptar
+        </button>
+      </div>
+      <div class="encriptado">
+        <img src="img/Muñeco.svg" alt="" id="munheco" />
+        <div class="mensaje-encriptado" id="msg-encriptado">
+          <h2 id="titulo-mensaje">Ningún mensaje fue encontrado</h2>
+          <p id="parrafo">
+            Ingresa el texto que desees encriptar o desencriptar
+          </p>
+          <textarea
+            name="mensaje"
+            id="mensaje"
+            class="mensaje"
+            cols="30"
+            rows="10"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="main.js"></script>
+</html>
