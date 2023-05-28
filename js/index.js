@@ -1,4 +1,4 @@
-// Obtener elementos del DOM
+// Obteniendo elementos del DOM
 const ingresoTexto = document.getElementById("ingreso-texto");
 const botonEncriptar = document.getElementById("boton-encriptar");
 const botonDesencriptar = document.getElementById("boton-desencriptar");
@@ -19,7 +19,7 @@ const remplazar = [
 
 // Funcion para mostrar el nuevo valor en el mensaje final y actualizar la interfaz
 const remplace = (nuevoValor) => {
-  mensajeFinal.innerHTML = nuevoValor;
+  mensajeFinal.textContent = nuevoValor;
   munheco.classList.add("none");
   ingresoTexto.value = "";
   rightInfo.style.display = "none";
@@ -30,7 +30,7 @@ const remplace = (nuevoValor) => {
 
 // Funcion para restablecer la interfaz a su estado original
 const reset = () => {
-  mensajeFinal.innerHTML = "";
+  mensajeFinal.textContent = "";
   munheco.classList.remove("none");
   rightInfo.style.display = "block";
   botonCopiar.style.display = "none";
@@ -41,7 +41,8 @@ const reset = () => {
 
 // Funcion para encriptar el texto
 function encriptar(newText) {
-  for (let i = 0; i < remplazar.length; i++) {
+  const remplazarLength = remplazar.length;
+  for (let i = 0; i < remplazarLength; i++) {
     if (newText.includes(remplazar[i][0])) {
       newText = newText.replaceAll(remplazar[i][0], remplazar[i][1]);
     }
@@ -51,7 +52,8 @@ function encriptar(newText) {
 
 // Funcion para desencriptar el texto
 function desencriptar(newText) {
-  for (let i = 0; i < remplazar.length; i++) {
+  const remplazarLength = remplazar.length;
+  for (let i = 0; i < remplazarLength; i++) {
     if (newText.includes(remplazar[i][1])) {
       newText = newText.replaceAll(remplazar[i][1], remplazar[i][0]);
     }
@@ -59,33 +61,29 @@ function desencriptar(newText) {
   return newText;
 }
 
-// Event listener para el boton de encriptar
-botonEncriptar.addEventListener("click", () => {
-  const texto = ingresoTexto.value.toLowerCase();
-  if (texto != "") {
-    remplace(encriptar(texto));
-  } else {
-    alert("Ingrese texto a encriptar");
+// Event listener para los botones de encriptar, desencriptar y copiar
+document.addEventListener("click", (event) => {
+  if (event.target.id === "boton-encriptar") {
+    const texto = ingresoTexto.value.toLowerCase();
+    if (texto !== "") {
+      remplace(encriptar(texto));
+    } else {
+      alert("Ingrese texto a encriptar");
+      reset();
+    }
+  } else if (event.target.id === "boton-desencriptar") {
+    const texto = ingresoTexto.value.toLowerCase();
+    if (texto !== "") {
+      remplace(desencriptar(texto));
+    } else {
+      alert("Ingrese texto a desencriptar");
+      reset();
+    }
+  } else if (event.target.id === "boton-copiar") {
+    let texto = mensajeFinal;
+    texto.select();
+    document.execCommand("copy");
+    alert("Texto copiado");
     reset();
   }
-});
-
-// Event listener para el boton de desencriptar
-botonDesencriptar.addEventListener("click", () => {
-  const texto = ingresoTexto.value.toLowerCase();
-  if (texto != "") {
-    remplace(desencriptar(texto));
-  } else {
-    alert("Ingrese texto a desencriptar");
-    reset();
-  }
-});
-
-// Event listener para el boton de copiar
-botonCopiar.addEventListener("click", () => {
-  let texto = mensajeFinal;
-  texto.select();
-  document.execCommand("copy");
-  alert("Texto copiado");
-  reset();
 });
