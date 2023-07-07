@@ -1,4 +1,4 @@
-# :shinto_shrine: Challenge Encriptador | Oracle + Alura
+# :rocket: Challenge Encriptador | Oracle + Alura
 
 <p align="center" >
      <img src="https://github.com/noboda/Encriptador-Challenge-01/blob/master/img/image.png">
